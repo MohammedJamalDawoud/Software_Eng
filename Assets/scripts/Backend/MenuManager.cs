@@ -38,5 +38,6 @@ public class MenuManager : MonoBehaviour // Menu Manager Class this manages all 
     public void Onclickplaymenu()
     {
         OpenMenu("play");
+        Debug.Log("Menü");
     }
 }
