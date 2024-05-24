@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance; // this is the static instance of the GameManager Class
+    [SerializeField] private Animator unoHeadingAnimator;
     [Header("Menu Buttons")]
     [SerializeField] private Button playMenuButton;
     [SerializeField] private Button settingsMenuButton;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
     public void OnClickSettingsMenuButton()
     {
         MenuManager.Instance.OpenMenu("setting");
+        unoHeadingAnimator.SetBool("minimize", true);
     }
     public void OnClickQuitButton()
     {
@@ -49,5 +51,6 @@ public class GameManager : MonoBehaviour
     public void OnClickBackFromSettingButton()
     {
         MenuManager.Instance.OpenMenu("main");
+        unoHeadingAnimator.SetBool("minimize", false);
     }
 }
