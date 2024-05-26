@@ -17,7 +17,9 @@ public class SoundManagerUI : MonoBehaviour
 
     private void Start()
     {
-
+        musicSlider.value = SoundManager.Instance.musicLevel / 100f;
+        sfxSlider.value = SoundManager.Instance.sfxLevel / 100f;
+        // Debug.Log("Music Level: " + musicSlider.value + " SFX Level: " + sfxSlider.value);
     }
 
     public void OnMusicLevelChanged()
@@ -25,6 +27,7 @@ public class SoundManagerUI : MonoBehaviour
         float value = musicSlider.value;
         musicLevel = value;
         musicLevelText.text = ((int)(value * 100)).ToString("00") + "%";
+        SoundManager.Instance.StoreSoundData((int)(musicLevel * 100), (int)(sfxLevel * 100));
     }
 
     public void OnSFXLevelChanged()
@@ -32,5 +35,6 @@ public class SoundManagerUI : MonoBehaviour
         float value = sfxSlider.value;
         sfxLevel = value;
         sfxLevelText.text = ((int)(value * 100)).ToString("00") + "%";
+        SoundManager.Instance.StoreSoundData((int)(musicLevel * 100), (int)(sfxLevel * 100));
     }
 }
