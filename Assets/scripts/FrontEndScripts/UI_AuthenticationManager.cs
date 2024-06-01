@@ -55,7 +55,6 @@ public class UI_AuthenticationManager : MonoBehaviour
             return;
         }
         Debug.Log("Registering User Successfully...");
-        AuthManager.Instance.RegisterFunc(regEmailField.text, regPasswordField.text, regUserNameField.text);
     }
     public void OnClickLoginButton()
     {
