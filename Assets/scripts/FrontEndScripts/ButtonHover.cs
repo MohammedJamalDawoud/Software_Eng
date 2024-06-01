@@ -14,7 +14,7 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public bool isSelected = false; // determines if the button is selected or not
     private void Update()
     {
-        if (GetComponent<Button>().interactable == false) // if the button is not interactable then return
+        if (GetComponent<Button>() && GetComponent<Button>().interactable == false) // if the button is not interactable then return
         {
             return;
         }
