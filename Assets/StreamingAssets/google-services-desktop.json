@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "222525531026",
+    "firebase_url": "https://software-eng-2b21d-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "software-eng-2b21d",
+    "storage_bucket": "software-eng-2b21d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222525531026:android:a4c37e4c6059c39dcd574b",
+        "android_client_info": {
+          "package_name": "com.softwareEng.UNOGame"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5mlNtlxKW-S-1-JFNj3mCRENzWk-d-PM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

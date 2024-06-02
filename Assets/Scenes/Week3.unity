@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 35268823}
   - component: {fileID: 35268825}
   - component: {fileID: 35268826}
+  - component: {fileID: 35268827}
   m_Layer: 0
   m_Name: ScriptManager
   m_TagString: Untagged
@@ -230,6 +231,19 @@ MonoBehaviour:
   registerButton: {fileID: 157401014}
   loginRegisterButton: {fileID: 1944242040}
   errorMessageText: {fileID: 1086609301}
+--- !u!114 &35268827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35268820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a71032d25bb11c4bbcda566f32f0b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uIFieldManager: {fileID: 35268826}
 --- !u!1 &69641624
 GameObject:
   m_ObjectHideFlags: 0
@@ -8765,6 +8779,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1778691202}
+  - component: {fileID: 1778691203}
   m_Layer: 5
   m_Name: AuthenticationPage
   m_TagString: Untagged
@@ -8796,6 +8811,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1778691203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778691201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a83f9f17c3ef68b40ad6bf3cfacc5b1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuName: auth
 --- !u!1 &1787495583
 GameObject:
   m_ObjectHideFlags: 0

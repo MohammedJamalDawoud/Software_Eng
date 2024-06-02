@@ -55,6 +55,7 @@ public class UI_AuthenticationManager : MonoBehaviour
             return;
         }
         Debug.Log("Registering User Successfully...");
+        AuthManager.Instance.RegisterFunc(regEmailField.text, regPasswordField.text, regUserNameField.text);
     }
     public void OnClickLoginButton()
     {
@@ -69,6 +70,7 @@ public class UI_AuthenticationManager : MonoBehaviour
             return;
         }
         Debug.Log("Logging in User Successfully...");
+        AuthManager.Instance.LoginFunc(loginUserNameField.text, loginPasswordField.text);
     }
     public void OnClickChangeScreenButton()
     {
@@ -88,5 +90,19 @@ public class UI_AuthenticationManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         errorMessageText.gameObject.SetActive(false);
+    }
+
+    public void ClearLoginFields()
+    {
+        loginUserNameField.text = "";
+        loginPasswordField.text = "";
+    }
+
+    public void ClearRegisterFields()
+    {
+        regUserNameField.text = "";
+        regEmailField.text = "";
+        regPasswordField.text = "";
+        regConfirmPasswordField.text = "";
     }
 }
