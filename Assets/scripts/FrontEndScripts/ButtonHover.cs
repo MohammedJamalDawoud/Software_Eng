@@ -43,4 +43,9 @@ public class ButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         mouseHover = false;
     }
+
+    public void OnEnable()
+    {
+        mouseHover = false;
+    }
 }

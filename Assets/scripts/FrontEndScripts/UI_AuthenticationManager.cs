@@ -23,6 +23,18 @@ public class UI_AuthenticationManager : MonoBehaviour
     public Button loginRegisterButton;
     [Header("Error Message Refs")]
     public TMP_Text errorMessageText;
+    [Header("Password Buttons Refs")]
+    public Button showPasswordButtonLogin;
+    public Button showPasswordButtonRegister;
+    public Sprite showPasswordSprite;
+    public Sprite hidePasswordSprite;
+    public bool isPasswordShownLogin = false;
+    public bool isPasswordShownRegister = false;
+    [Header("Save Login Refs")]
+    public Button SaveLoginButton;
+    public Sprite checkedBoxSprite;
+    public Sprite unCheckedBoxSprite;
+    public bool isSaveLogin = false;
     private void Awake()
     {
         loginRegisterButton.onClick.RemoveAllListeners();
@@ -31,6 +43,15 @@ public class UI_AuthenticationManager : MonoBehaviour
         loginButton.onClick.AddListener(OnClickLoginButton);
         registerButton.onClick.RemoveAllListeners();
         registerButton.onClick.AddListener(OnClickRegisterButton);
+        showPasswordButtonLogin.onClick.RemoveAllListeners();
+        showPasswordButtonLogin.onClick.AddListener(OnClickPasswordButtonLogin);
+        showPasswordButtonRegister.onClick.RemoveAllListeners();
+        showPasswordButtonRegister.onClick.AddListener(OnClickPasswordButtonRegister);
+        SaveLoginButton.onClick.RemoveAllListeners();
+        SaveLoginButton.onClick.AddListener(OnClickCheckBox);
+        OnClickPasswordButtonLogin();
+        OnClickPasswordButtonRegister();
+
     }
     public void OnClickRegisterButton()
     {
@@ -72,12 +93,36 @@ public class UI_AuthenticationManager : MonoBehaviour
         Debug.Log("Logging in User Successfully...");
         AuthManager.Instance.LoginFunc(loginUserNameField.text, loginPasswordField.text);
     }
+    public void OnClickPasswordButtonLogin()
+    {
+        isPasswordShownLogin = !isPasswordShownLogin;
+        loginPasswordField.contentType = isPasswordShownLogin ? TMP_InputField.ContentType.Standard : TMP_InputField.ContentType.Password;
+        loginPasswordField.ForceLabelUpdate();
+        showPasswordButtonLogin.GetComponent<Image>().sprite = !isPasswordShownLogin ? hidePasswordSprite : showPasswordSprite;
+    }
+
+    public void OnClickPasswordButtonRegister()
+    {
+        isPasswordShownRegister = !isPasswordShownRegister;
+        regPasswordField.contentType = isPasswordShownRegister ? TMP_InputField.ContentType.Standard : TMP_InputField.ContentType.Password;
+        regConfirmPasswordField.contentType = isPasswordShownRegister ? TMP_InputField.ContentType.Standard : TMP_InputField.ContentType.Password;
+        regPasswordField.ForceLabelUpdate();
+        regConfirmPasswordField.ForceLabelUpdate();
+        showPasswordButtonRegister.GetComponent<Image>().sprite = !isPasswordShownRegister ? hidePasswordSprite : showPasswordSprite;
+    }
+
     public void OnClickChangeScreenButton()
     {
         isRegisterScreen = !isRegisterScreen;
         registerScreenObj.SetActive(isRegisterScreen);
         loginScreenObj.SetActive(!isRegisterScreen);
         loginRegisterButton.GetComponentInChildren<TextMeshProUGUI>().text = isRegisterScreen ? "Login" : "Register";
+    }
+
+    public void OnClickCheckBox()
+    {
+        isSaveLogin = !isSaveLogin;
+        SaveLoginButton.GetComponent<Image>().sprite = isSaveLogin ? checkedBoxSprite : unCheckedBoxSprite;
     }
     public void ShowErrorMessage(string message)
     {
