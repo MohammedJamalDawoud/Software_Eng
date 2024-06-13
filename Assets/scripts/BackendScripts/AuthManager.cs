@@ -14,7 +14,6 @@ public class AuthManager : MonoBehaviour
     {
         auth = FirebaseAuth.DefaultInstance;
         reference = FirebaseDatabase.DefaultInstance.RootReference;
-        // reference = FirebaseDatabase.GetInstance("https://console.firebase.google.com/project/software-eng-2b21d/database/software-eng-2b21d-default-rtdb/data/~2F").RootReference;
         if (Instance == null)
         {
             Instance = this;

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button quitButton;
     [Header("Back")]
     [SerializeField] private Button backFromSettingButton;
+    [SerializeField] private Button backFromStartButton;
     private void Awake()
     {
         if (Instance == null) // if the instance of the GameManager is null then assign this to the instance
@@ -27,17 +28,19 @@ public class GameManager : MonoBehaviour
         settingsMenuButton.onClick.RemoveAllListeners();
         quitButton.onClick.RemoveAllListeners();
         backFromSettingButton.onClick.RemoveAllListeners();
+        backFromStartButton.onClick.RemoveAllListeners();
 
         playMenuButton.onClick.AddListener(OnClickPlayMenuButton);
         settingsMenuButton.onClick.AddListener(OnClickSettingsMenuButton);
         quitButton.onClick.AddListener(OnClickQuitButton);
         backFromSettingButton.onClick.AddListener(OnClickBackFromSettingButton);
+        backFromStartButton.onClick.AddListener(OnClickBackFromStartButton);
 
     }
 
     public void OnClickPlayMenuButton()
     {
-        MenuManager.Instance.OpenMenu("play");
+        MenuManager.Instance.OpenMenu("start");
     }
     public void OnClickSettingsMenuButton()
     {
@@ -52,5 +55,10 @@ public class GameManager : MonoBehaviour
     {
         MenuManager.Instance.OpenMenu("main");
         unoHeadingAnimator.SetBool("minimize", false);
+    }
+
+    public void OnClickBackFromStartButton()
+    {
+        MenuManager.Instance.OpenMenu("main");
     }
 }
