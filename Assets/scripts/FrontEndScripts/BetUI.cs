@@ -40,7 +40,7 @@ public class BetUI : MonoBehaviour
     {
         if (isRanked)
         {
-            betAmountText.text = "100";
+            betAmountText.text = BetManager.Instance.betAmount.ToString("N0");
             incrButton.interactable = true;
             decrButton.interactable = true;
         }
@@ -54,13 +54,13 @@ public class BetUI : MonoBehaviour
 
     public void OnClickIncreaseBet()
     {
-        // call here the method to change the bet...
-        betAmountText.text = 100.ToString();
+        int bet = BetManager.Instance.OnIncreBet();
+        betAmountText.text = bet.ToString("N0");
     }
 
     public void OnClickDecreaseBet()
     {
-        // call here the method to change the bet...
-        betAmountText.text = 0.ToString();
+        int bet = BetManager.Instance.OnDecreBet();
+        betAmountText.text = bet.ToString("N0");
     }
 }

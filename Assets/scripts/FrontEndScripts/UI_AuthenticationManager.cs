@@ -123,6 +123,7 @@ public class UI_AuthenticationManager : MonoBehaviour
     {
         isSaveLogin = !isSaveLogin;
         SaveLoginButton.GetComponent<Image>().sprite = isSaveLogin ? checkedBoxSprite : unCheckedBoxSprite;
+        PlayerPrefs.SetInt("savelogin", isSaveLogin ? 1 : 0);
     }
     public void ShowErrorMessage(string message)
     {

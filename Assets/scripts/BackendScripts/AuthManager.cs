@@ -22,6 +22,28 @@ public class AuthManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+    }
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("savelogin"))
+        {
+            int saveLogin = PlayerPrefs.GetInt("savelogin");
+            if (saveLogin == 1)
+            {
+                string email = PlayerPrefs.GetString("email");
+                string password = PlayerPrefs.GetString("password");
+                uIFieldManager.loginUserNameField.text = email;
+                uIFieldManager.loginPasswordField.text = password;
+                uIFieldManager.loginButton.onClick.Invoke();
+                uIFieldManager.isSaveLogin = true;
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("savelogin", 0);
+        }
     }
 
     public async void RegisterFunc(string email, string password, string userName)
@@ -76,9 +98,22 @@ public class AuthManager : MonoBehaviour
                 AuthResult authResult = task.Result;
                 FirebaseUser newUser = authResult.User;
                 Debug.Log("User Logged In");
+                if (uIFieldManager.isSaveLogin)
+                {
+                    PlayerPrefs.SetString("email", email);
+                    PlayerPrefs.SetString("password", password);
+                }
                 uIFieldManager.ClearLoginFields();
                 MenuManager.Instance.OpenMenu("main");
             }
         });
+    }
+
+    public void OnClickSignOut()
+    {
+        auth.SignOut();
+        MenuManager.Instance.OpenMenu("auth");
+        // clear all the PlayerPrefs...
+        PlayerPrefs.DeleteAll();
     }
 }

@@ -40,18 +40,18 @@ public class ErrorBoxManager : MonoBehaviour
         StartCoroutine(disableErrorMessageRoutine(rectTransform));
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            ShowErrorMessage("This is an error message", false);
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            ShowErrorMessage("This is an error message which is big in size ", true);
-        }
+    // private void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.K))
+    //     {
+    //         ShowErrorMessage("This is an error message", false);
+    //     }
+    //     if (Input.GetKeyDown(KeyCode.L))
+    //     {
+    //         ShowErrorMessage("This is an error message which is big in size ", true);
+    //     }
 
-    }
+    // }
 
     private IEnumerator disableErrorMessageRoutine(RectTransform rectTransform)
     {
