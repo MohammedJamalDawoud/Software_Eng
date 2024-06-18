@@ -19,7 +19,7 @@ public class BetUI : MonoBehaviour
         casualButton.GetComponent<Button>().onClick.RemoveAllListeners();
         rankedButton.GetComponent<Button>().onClick.AddListener(() => OnClickRankedCasualButton(true));
         casualButton.GetComponent<Button>().onClick.AddListener(() => OnClickRankedCasualButton(false));
-        rankedButton.GetComponent<Button>().onClick.Invoke();
+        // rankedButton.GetComponent<Button>().onClick.Invoke();
 
         incrButton.onClick.RemoveAllListeners();
         decrButton.onClick.RemoveAllListeners();

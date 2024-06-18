@@ -61,4 +61,14 @@ public class GameManager : MonoBehaviour
     {
         MenuManager.Instance.OpenMenu("main");
     }
+
+    public void OnClickPlay()
+    {
+
+    }
+
+    public void StartGame()
+    {
+
+    }
 }
