@@ -22,11 +22,10 @@ public class Card : MonoBehaviour
 
     public void OnClickCard()
     {
-        // if (GameManager.Instance.isMyTurn(cardLocationManager.id) == false)
-        // {
-
-        //     return;
-        // }
+        if (!GamePlayManager.Instance.isMyTurn(cardLocationManager.id))
+        {
+            return;
+        }
         gameObject.GetComponent<Image>().raycastTarget = false;
         StartCoroutine(delayedSetParent());
         cardLocationManager.myCards.Remove(gameObject);
@@ -36,7 +35,7 @@ public class Card : MonoBehaviour
         transform.DOScale(Vector3.one, 0.5f);
         transform.DOLocalRotate(cardLocationManager.stackLocation.localEulerAngles, 0.25f);
         StartCoroutine(cardLocationManager.SortCards(0.25f));
-        // GameManager.Instance.ManageTurn();
+        GamePlayManager.Instance.ManageTurn();
         // string leftAbility = leftAbilityText.text;
         // string rightAbility = rightAbilityText.text;
         // GameManager.Instance.LastCardSetup(leftAbility, rightAbility)

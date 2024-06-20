@@ -71,19 +71,20 @@ public class CardsManager : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
         isSetuped = true;
-
+        GamePlayManager.Instance.SetReadyState(id, true);
     }
 
 
     public void PickCards()
     {
-        // if (!GameManager.Instance.isMyTurn(id))
-        // {
-        //     return;
-        // }
+        if (!GamePlayManager.Instance.isMyTurn(id))
+        {
+            return;
+        }
         GameObject Card = Instantiate(cardPrefab, cardParent);
         Card.transform.localScale = Vector3.one;
         Card.transform.position = pickCardsPosition.position;
+        Card.GetComponent<Image>().sprite = GamePlayManager.Instance.GetRandomSprite();
         // Card.transform.DOLocalMove(new Vector3(startPosi, 0, 0), 0.5f);
         RectTransform rectTransform = Card.GetComponentInChildren<RectTransform>();
         // rectTransform.DOSizeDelta(targetSize, 0.25f);
@@ -92,7 +93,7 @@ public class CardsManager : MonoBehaviour
         Card.transform.DOLocalRotate(new Vector3(0, 0, cardRotation), 0.25f);
         myCards.Add(Card);
         StartCoroutine(SortCards(0.1f));
-        // GameManager.Instance.ManageTurn();
+        GamePlayManager.Instance.ManageTurn();
     }
 
     public IEnumerator SortCards(float delay)
