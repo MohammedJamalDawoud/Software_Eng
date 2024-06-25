@@ -5,13 +5,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+
 public class Card : MonoBehaviour
 {
     [Header("Logical Variables")]
+    public Sprite cardSprite;
+    public string cardColor;
+    public string cardNumber;
+    public string cardSpecial;
+    public bool isSpecial;
     public CardsManager cardLocationManager;
     private Button cardButton;
-    // public TMP_Text leftAbilityText;
-    // public TMP_Text rightAbilityText;
+
     private void Awake()
     {
         cardLocationManager = GetComponentInParent<CardsManager>();
@@ -26,6 +31,14 @@ public class Card : MonoBehaviour
         {
             return;
         }
+
+        if (!IsPlayable())
+        {
+            // If the card is not playable, simply return
+            Debug.Log("Card is not playable!");
+            return;
+        }
+
         gameObject.GetComponent<Image>().raycastTarget = false;
         StartCoroutine(delayedSetParent());
         cardLocationManager.myCards.Remove(gameObject);
@@ -36,14 +49,12 @@ public class Card : MonoBehaviour
         transform.DOLocalRotate(cardLocationManager.stackLocation.localEulerAngles, 0.25f);
         StartCoroutine(cardLocationManager.SortCards(0.25f));
         GamePlayManager.Instance.ManageTurn();
-        // string leftAbility = leftAbilityText.text;
-        // string rightAbility = rightAbilityText.text;
-        // GameManager.Instance.LastCardSetup(leftAbility, rightAbility)
     }
+
+
     IEnumerator delayedSetParent()
     {
         yield return new WaitForSeconds(0.1f);
         transform.SetParent(cardLocationManager.stackLocation);
     }
-
 }
