@@ -25,20 +25,51 @@ public class Card : MonoBehaviour
         cardButton.onClick.AddListener(OnClickCard);
     }
 
+    public void SetupCard(Sprite _cardSprite)
+    {
+        cardSprite = _cardSprite;
+        string cardName = cardSprite.name;
+        if (cardName[5].ToString() == "W")
+        {
+            cardSpecial = "W";
+            isSpecial = true;
+        }
+        if (cardName[5].ToString() == "+")
+        {
+            cardSpecial = "4";
+            isSpecial = true;
+        }
+        if (cardName[7].ToString() == "+")
+        {
+            cardSpecial = "2";
+            cardColor = cardName[5].ToString();
+            isSpecial = true;
+        }
+        if (cardName[7].ToString() == "S")
+        {
+            cardSpecial = "S";
+            cardColor = cardName[5].ToString();
+            isSpecial = true;
+        }
+        if (cardName[7].ToString() == "R")
+        {
+            cardSpecial = "R";
+            cardColor = cardName[5].ToString();
+            isSpecial = true;
+        }
+        if (!isSpecial)
+        {
+            cardColor = cardName[5].ToString();
+            cardNumber = cardName[7].ToString();
+        }
+    }
+
     public void OnClickCard()
     {
         if (!GamePlayManager.Instance.isMyTurn(cardLocationManager.id))
         {
             return;
         }
-
-        if (!IsPlayable())
-        {
-            // If the card is not playable, simply return
-            Debug.Log("Card is not playable!");
-            return;
-        }
-
         gameObject.GetComponent<Image>().raycastTarget = false;
         StartCoroutine(delayedSetParent());
         cardLocationManager.myCards.Remove(gameObject);
@@ -50,7 +81,6 @@ public class Card : MonoBehaviour
         StartCoroutine(cardLocationManager.SortCards(0.25f));
         GamePlayManager.Instance.ManageTurn();
     }
-
 
     IEnumerator delayedSetParent()
     {

@@ -60,7 +60,7 @@ public class CardsManager : MonoBehaviour
             // cardinfo.leftAbilityText.text = UnityEngine.Random.Range(10, 100).ToString("N0");
             // cardinfo.rightAbilityText.text = UnityEngine.Random.Range(10, 100).ToString("N0");
             Card.GetComponent<Image>().sprite = GamePlayManager.Instance.GetRandomSprite();
-            // cardinfo.SetupCard(Card.GetComponent<Image>().sprite);
+            cardinfo.SetupCard(Card.GetComponent<Image>().sprite);
             Card.transform.position = pickCardsPosition.position;
             Card.transform.DOLocalMove(new Vector3(startPosi, 0, 0), 0.5f);
             RectTransform rectTransform = Card.GetComponentInChildren<RectTransform>();
@@ -86,7 +86,7 @@ public class CardsManager : MonoBehaviour
         Card.transform.localScale = Vector3.one;
         Card.transform.position = pickCardsPosition.position;
         Card.GetComponent<Image>().sprite = GamePlayManager.Instance.GetRandomSprite();
-        // Card.GetComponent<Card>().SetupCard(Card.GetComponent<Image>().sprite);
+        Card.GetComponent<Card>().SetupCard(Card.GetComponent<Image>().sprite);
         // Card.transform.DOLocalMove(new Vector3(startPosi, 0, 0), 0.5f);
         RectTransform rectTransform = Card.GetComponentInChildren<RectTransform>();
         // rectTransform.DOSizeDelta(targetSize, 0.25f);
