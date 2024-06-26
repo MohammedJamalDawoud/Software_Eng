@@ -70,6 +70,14 @@ public class Card : MonoBehaviour
         {
             return;
         }
+
+        if (!IsPlayable())
+        {
+            // If the card is not playable, simply return
+            Debug.Log("Card is not playable!");
+            return;
+        }
+
         gameObject.GetComponent<Image>().raycastTarget = false;
         StartCoroutine(delayedSetParent());
         cardLocationManager.myCards.Remove(gameObject);
@@ -80,6 +88,37 @@ public class Card : MonoBehaviour
         transform.DOLocalRotate(cardLocationManager.stackLocation.localEulerAngles, 0.25f);
         StartCoroutine(cardLocationManager.SortCards(0.25f));
         GamePlayManager.Instance.ManageTurn();
+    }
+
+    private bool IsPlayable()
+    {
+        Card topCard = StackManager.Instance.GetTopOfStack();
+
+        if (topCard == null)
+        {
+            return true;
+        }
+        if (cardSpecial == "W" || cardSpecial == "4")
+        {
+            return true;
+        }
+        if (cardColor == topCard.cardColor || cardNumber == topCard.cardNumber)
+        {
+            return true;
+        }
+        if (cardSpecial == "2" || cardSpecial == "S" || cardSpecial == "R")
+        {
+            if (cardSpecial == topCard.cardSpecial && cardColor == topCard.cardColor)
+            {
+                return true;
+            }
+        }
+        if (topCard.cardSpecial == "4" && cardSpecial == "4")
+        {
+            return true;
+        }
+
+        return false;
     }
 
     IEnumerator delayedSetParent()
