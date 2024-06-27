@@ -5,6 +5,8 @@ using UnityEngine;
 public class GamePlayManager : MonoBehaviour
 {
     public static GamePlayManager Instance;
+    public float totalTime = 15f;
+    public float currentTime;
     public List<Sprite> cardSprites;
     public List<int> usedCardIndexes = new List<int>();
     public int turn = -1;
@@ -66,6 +68,14 @@ public class GamePlayManager : MonoBehaviour
             {
                 CardHoverScript cardHoverScript = cardHover.GetComponent<CardHoverScript>();
                 cardHoverScript.isMyTurn = isMyTurn;
+            }
+            if (isMyTurn)
+            {
+                cardsManager.StartTimer(totalTime);
+            }
+            else
+            {
+                cardsManager.StopTimer();
             }
         }
     }

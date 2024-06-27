@@ -11,6 +11,7 @@ public class CardsManager : MonoBehaviour
     public static CardsManager Instance;
     [Header("Card Prefab")]
     [SerializeField] private GameObject cardPrefab;
+    public Image timerFill;
     [Header("Card Parent")]
     [SerializeField] private Transform cardParent;
     public List<GameObject> myCards;
@@ -131,6 +132,29 @@ public class CardsManager : MonoBehaviour
             rectTransform.DOSizeDelta(targetSize, 0.25f);
             startPosi += xBasePosition[sizeIndex];
         }
+    }
+
+    private Tween timerTween;
+    public void StartTimer(float time)
+    {
+        if (timerTween != null && timerTween.IsActive())
+        {
+            timerTween.Kill();
+        }
+        timerFill.fillAmount = 0;
+        timerTween = timerFill.DOFillAmount(1, time).OnComplete(() =>
+           {
+               PickCards();
+           });
+    }
+
+    public void StopTimer()
+    {
+        if (timerTween != null && timerTween.IsActive())
+        {
+            timerTween.Kill();
+        }
+        timerFill.DOFillAmount(0, 0.25f);
     }
 
 }
