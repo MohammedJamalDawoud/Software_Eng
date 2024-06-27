@@ -18,4 +18,17 @@ public class StackManager : MonoBehaviour
         }
         return null;
     }
+
+    public bool CheckTopOfStackisWildorStack()
+    {
+        Card topCard = GetTopOfStack();
+        if (topCard != null)
+        {
+            if (topCard.cardSpecial == "W" || topCard.cardSpecial == "S")
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

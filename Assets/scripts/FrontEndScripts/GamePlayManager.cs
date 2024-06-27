@@ -9,9 +9,11 @@ public class GamePlayManager : MonoBehaviour
     public float currentTime;
     public List<Sprite> cardSprites;
     public List<int> usedCardIndexes = new List<int>();
+    [SerializeField] private List<ColorSelector> colorSelectors = new List<ColorSelector>();
     public int turn = -1;
     [SerializeField] private List<CardsManager> players = new List<CardsManager>();
     [SerializeField] private bool[] readyStates = new bool[4];
+    [SerializeField] private GameObject gameOverPanel;
     private void Awake()
     {
         if (Instance == null)
@@ -78,8 +80,81 @@ public class GamePlayManager : MonoBehaviour
                 cardsManager.StopTimer();
             }
         }
+        SetSelectedColors();
     }
 
+    private void SetSelectedColors()
+    {
+        string color = StackManager.Instance.GetTopOfStack().cardColor;
+        foreach (ColorSelector colorSelector in colorSelectors)
+        {
+            if (checkColor(color, colorSelector.color))
+            {
+                colorSelector.isSelected = true;
+            }
+            else
+            {
+                colorSelector.isSelected = false;
+            }
+        }
+    }
+
+    public void SetThisColorSelector(ColorSelector colorSelector)
+    {
+        foreach (ColorSelector selector in colorSelectors)
+        {
+            selector.isSelected = false;
+        }
+        colorSelector.isSelected = true;
+        Card topCard = StackManager.Instance.GetTopOfStack();
+        topCard.cardColor = getColorFromSelector(colorSelector);
+        ManageTurn();
+    }
+    public void ShowGameOverPanel()
+    {
+        gameOverPanel.SetActive(true);
+    }
+
+    private string getColorFromSelector(ColorSelector colorSelector)
+    {
+        if (colorSelector.color == ColorType.Red)
+        {
+            return "R";
+        }
+        if (colorSelector.color == ColorType.Green)
+        {
+            return "G";
+        }
+        if (colorSelector.color == ColorType.Blue)
+        {
+            return "V";
+        }
+        if (colorSelector.color == ColorType.Yellow)
+        {
+            return "Y";
+        }
+        return "";
+    }
+    private bool checkColor(string currentColor, ColorType colorType)
+    {
+        if (currentColor == "R" && colorType == ColorType.Red)
+        {
+            return true;
+        }
+        if (currentColor == "G" && colorType == ColorType.Green)
+        {
+            return true;
+        }
+        if (currentColor == "B" && colorType == ColorType.Blue)
+        {
+            return true;
+        }
+        if (currentColor == "Y" && colorType == ColorType.Yellow)
+        {
+            return true;
+        }
+        return false;
+    }
 
     public bool isMyTurn(int index)
     {

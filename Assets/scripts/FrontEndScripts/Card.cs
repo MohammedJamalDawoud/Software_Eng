@@ -87,7 +87,14 @@ public class Card : MonoBehaviour
         transform.DOScale(Vector3.one, 0.5f);
         transform.DOLocalRotate(cardLocationManager.stackLocation.localEulerAngles, 0.25f);
         StartCoroutine(cardLocationManager.SortCards(0.25f));
-        GamePlayManager.Instance.ManageTurn();
+        if (cardSpecial == "W" || cardSpecial == "4")
+        {
+
+        }
+        else
+        {
+            GamePlayManager.Instance.ManageTurn();
+        }
     }
 
     private bool IsPlayable()
