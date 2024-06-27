@@ -95,6 +95,10 @@ public class Card : MonoBehaviour
         {
             GamePlayManager.Instance.ManageTurn();
         }
+        if (cardLocationManager.myCards.Count == 0)
+        {
+            GamePlayManager.Instance.ShowGameOverPanel();
+        }
     }
 
     private bool IsPlayable()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GamePlayManager : MonoBehaviour
 {
@@ -9,11 +10,13 @@ public class GamePlayManager : MonoBehaviour
     public float currentTime;
     public List<Sprite> cardSprites;
     public List<int> usedCardIndexes = new List<int>();
-    [SerializeField] private List<ColorSelector> colorSelectors = new List<ColorSelector>();
+    [SerializeField] public List<ColorSelector> colorSelectors = new List<ColorSelector>();
     public int turn = -1;
     [SerializeField] private List<CardsManager> players = new List<CardsManager>();
     [SerializeField] private bool[] readyStates = new bool[4];
     [SerializeField] private GameObject gameOverPanel;
+    public bool isWin = false;
+    [SerializeField] private Button backButton;
     private void Awake()
     {
         if (Instance == null)
@@ -24,6 +27,11 @@ public class GamePlayManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        backButton.onClick.AddListener(BackToMenu);
+    }
+    private void BackToMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Week3");
     }
     public Sprite GetRandomSprite()
     {
@@ -62,6 +70,10 @@ public class GamePlayManager : MonoBehaviour
 
     public void ManageTurn()
     {
+        if (isWin)
+        {
+            return;
+        }
         turn = (turn + 1) % 4;
         foreach (CardsManager cardsManager in players)
         {
@@ -74,6 +86,11 @@ public class GamePlayManager : MonoBehaviour
             if (isMyTurn)
             {
                 cardsManager.StartTimer(totalTime);
+                cardsManager.TryGetComponent(out BotPlayer botPlayer);
+                if (botPlayer != null)
+                {
+                    botPlayer.PlayBot();
+                }
             }
             else
             {
@@ -112,6 +129,7 @@ public class GamePlayManager : MonoBehaviour
     }
     public void ShowGameOverPanel()
     {
+        isWin = true;
         gameOverPanel.SetActive(true);
     }
 

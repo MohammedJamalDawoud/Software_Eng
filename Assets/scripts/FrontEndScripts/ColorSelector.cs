@@ -72,8 +72,8 @@ public class ColorSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 GamePlayManager.Instance.SetThisColorSelector(this);
             }
         }
-
     }
+
 }
 
 public enum ColorType

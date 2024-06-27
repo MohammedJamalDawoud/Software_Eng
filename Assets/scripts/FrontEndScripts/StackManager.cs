@@ -24,7 +24,7 @@ public class StackManager : MonoBehaviour
         Card topCard = GetTopOfStack();
         if (topCard != null)
         {
-            if (topCard.cardSpecial == "W" || topCard.cardSpecial == "S")
+            if (topCard.cardSpecial == "W" || topCard.cardSpecial == "4")
             {
                 return true;
             }

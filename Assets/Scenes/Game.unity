@@ -1993,6 +1993,7 @@ GameObject:
   m_Component:
   - component: {fileID: 900389754}
   - component: {fileID: 900389755}
+  - component: {fileID: 900389756}
   m_Layer: 5
   m_Name: Bot-2
   m_TagString: Untagged
@@ -2051,6 +2052,19 @@ MonoBehaviour:
   sizeVariationTrigger: 0a0000000f00000014000000
   cardRotation: 0
   isSetuped: 0
+--- !u!114 &900389756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900389753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b70d60711e70b4382022b7bf870c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardsManager: {fileID: 0}
 --- !u!1 &915836732
 GameObject:
   m_ObjectHideFlags: 0
@@ -3350,6 +3364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1378703408}
   - component: {fileID: 1378703409}
+  - component: {fileID: 1378703410}
   m_Layer: 5
   m_Name: Bot-3
   m_TagString: Untagged
@@ -3408,6 +3423,19 @@ MonoBehaviour:
   sizeVariationTrigger: 0a0000000f00000014000000
   cardRotation: 0
   isSetuped: 0
+--- !u!114 &1378703410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378703407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b70d60711e70b4382022b7bf870c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardsManager: {fileID: 0}
 --- !u!1 &1431387748
 GameObject:
   m_ObjectHideFlags: 0
@@ -4281,6 +4309,9 @@ MonoBehaviour:
   - {fileID: 900389755}
   - {fileID: 1378703409}
   readyStates: 00000000
+  gameOverPanel: {fileID: 1743891381}
+  isWin: 0
+  backButton: {fileID: 769328340}
 --- !u!4 &1685962227
 Transform:
   m_ObjectHideFlags: 0
@@ -4748,6 +4779,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1872338175}
   - component: {fileID: 1872338176}
+  - component: {fileID: 1872338177}
   m_Layer: 5
   m_Name: Bot-1
   m_TagString: Untagged
@@ -4806,6 +4838,19 @@ MonoBehaviour:
   sizeVariationTrigger: 0a0000000f00000014000000
   cardRotation: 0
   isSetuped: 0
+--- !u!114 &1872338177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872338174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b70d60711e70b4382022b7bf870c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardsManager: {fileID: 0}
 --- !u!1 &1910569300
 GameObject:
   m_ObjectHideFlags: 0
