@@ -15,6 +15,7 @@ public class LeaderboardManager : MonoBehaviour
     }
     private void OnEnable()
     {
+        LoadingManager.Instance.ShowLoading();
         SetUpLeaderboard();
     }
     public async void SetUpLeaderboard()
@@ -48,6 +49,7 @@ public class LeaderboardManager : MonoBehaviour
                     leaderboardItem1.gameObject.SetActive(true);
                     leaderboardItem1.transform.SetAsLastSibling();
                 }
+                LoadingManager.Instance.HideLoading();
             }
         });
     }

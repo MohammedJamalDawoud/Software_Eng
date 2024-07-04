@@ -48,6 +48,7 @@ public class AuthManager : MonoBehaviour
 
     public async void RegisterFunc(string email, string password, string userName)
     {
+        LoadingManager.Instance.ShowLoading();
         await auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
             if (task.IsCanceled)
@@ -75,12 +76,14 @@ public class AuthManager : MonoBehaviour
                 Debug.Log("User Registered");
                 uIFieldManager.ClearRegisterFields();
                 uIFieldManager.OnClickChangeScreenButton();
+                LoadingManager.Instance.HideLoading();
             }
         });
     }
 
     public async void LoginFunc(string email, string password)
     {
+        LoadingManager.Instance.ShowLoading();
         await auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
         {
             if (task.IsCanceled)
@@ -107,6 +110,7 @@ public class AuthManager : MonoBehaviour
                 }
                 uIFieldManager.ClearLoginFields();
                 MenuManager.Instance.OpenMenu("main");
+                LoadingManager.Instance.HideLoading();
             }
         });
     }

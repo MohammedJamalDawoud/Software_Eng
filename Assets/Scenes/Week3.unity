@@ -4065,7 +4065,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.00006866455}
-  m_SizeDelta: {x: 0, y: 711.8}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &604693946
 MonoBehaviour:
@@ -6003,8 +6003,10 @@ MonoBehaviour:
   playMenuButton: {fileID: 106285555}
   settingsMenuButton: {fileID: 1384397200}
   quitButton: {fileID: 1710708059}
+  leaderBoardButton: {fileID: 775105635}
   backFromSettingButton: {fileID: 1407764658}
   backFromStartButton: {fileID: 2055091403}
+  backFromLeaderBoardButton: {fileID: 421849669}
 --- !u!4 &1054977838
 Transform:
   m_ObjectHideFlags: 0
@@ -11256,13 +11258,14 @@ GameObject:
   - component: {fileID: 1843700913}
   - component: {fileID: 1843700915}
   - component: {fileID: 1843700914}
+  - component: {fileID: 1843700916}
   m_Layer: 5
   m_Name: LoadingPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1843700913
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11297,10 +11300,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.98039216}
-  m_RaycastTarget: 1
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11322,6 +11325,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843700912}
   m_CullTransparentMesh: 1
+--- !u!114 &1843700916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843700912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d458a9dd8e946849878baebf8231a15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingImage: {fileID: 8169259361781121166}
+  background: {fileID: 1843700914}
 --- !u!1 &1849368284
 GameObject:
   m_ObjectHideFlags: 0
@@ -13300,7 +13317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.12283802, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.12283802, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

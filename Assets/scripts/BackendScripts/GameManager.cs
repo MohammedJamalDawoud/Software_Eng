@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button playMenuButton;
     [SerializeField] private Button settingsMenuButton;
     [SerializeField] private Button quitButton;
+    [SerializeField] private Button leaderBoardButton;
     [Header("Back")]
     [SerializeField] private Button backFromSettingButton;
     [SerializeField] private Button backFromStartButton;
+    [SerializeField] private Button backFromLeaderBoardButton;
     private void Awake()
     {
         if (Instance == null) // if the instance of the GameManager is null then assign this to the instance
@@ -28,15 +30,29 @@ public class GameManager : MonoBehaviour
         playMenuButton.onClick.RemoveAllListeners();
         settingsMenuButton.onClick.RemoveAllListeners();
         quitButton.onClick.RemoveAllListeners();
+        leaderBoardButton.onClick.RemoveAllListeners();
         backFromSettingButton.onClick.RemoveAllListeners();
         backFromStartButton.onClick.RemoveAllListeners();
+        backFromLeaderBoardButton.onClick.RemoveAllListeners();
 
         playMenuButton.onClick.AddListener(OnClickPlayMenuButton);
         settingsMenuButton.onClick.AddListener(OnClickSettingsMenuButton);
         quitButton.onClick.AddListener(OnClickQuitButton);
         backFromSettingButton.onClick.AddListener(OnClickBackFromSettingButton);
         backFromStartButton.onClick.AddListener(OnClickBackFromStartButton);
+        backFromLeaderBoardButton.onClick.AddListener(OnClickBackFromLeaderBoardButton);
+        leaderBoardButton.onClick.AddListener(OnClickLeaderBoardButton);
 
+    }
+
+    public void OnClickLeaderBoardButton()
+    {
+        MenuManager.Instance.OpenMenu("leaderboard");
+    }
+
+    public void OnClickBackFromLeaderBoardButton()
+    {
+        MenuManager.Instance.OpenMenu("main");
     }
 
     public void OnClickPlayMenuButton()
