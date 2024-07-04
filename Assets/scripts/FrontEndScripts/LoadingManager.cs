@@ -25,7 +25,7 @@ public class LoadingManager : MonoBehaviour
     public void ShowLoading()
     {
         background.color = new Color32(0, 0, 0, 0);
-        background.DOFade(1f, 0.5f);
+        background.DOFade(0.8f, 0.5f);
         loadingImage.color = new Color(loadingImage.color.r, loadingImage.color.g, loadingImage.color.b, 0);
         loadingImage.DOColor(new Color(loadingImage.color.r, loadingImage.color.g, loadingImage.color.b, 1), 0.5f);
     }

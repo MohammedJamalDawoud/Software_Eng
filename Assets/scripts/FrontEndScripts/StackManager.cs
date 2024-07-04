@@ -5,6 +5,7 @@ using UnityEngine;
 public class StackManager : MonoBehaviour
 {
     public static StackManager Instance;
+    public int stackCardsCount = 0;
     private void Awake()
     {
         Instance = this;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Firebase.Database;
+using Firebase.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -159,7 +160,15 @@ public class GamePlayManager : MonoBehaviour
             i++;
         }
         PlayerPrefs.SetInt("myscore", playerScores[0]);
-        await FirebaseDatabase.DefaultInstance.RootReference.Child(PlayerPrefs.GetString("username")).Child("score").SetValueAsync(playerScores[0]);
+        await FirebaseDatabase.DefaultInstance.RootReference.Child(PlayerPrefs.GetString("username")).Child("score").GetValueAsync().ContinueWithOnMainThread(async task =>
+        {
+            if (task.IsCompletedSuccessfully)
+            {
+                int score = int.Parse(task.Result.Value.ToString());
+                await FirebaseDatabase.DefaultInstance.RootReference.Child(PlayerPrefs.GetString("username")).Child("score").SetValueAsync(score + playerScores[0]);
+            }
+        });
+
         gameOverPanel.GetComponent<GameOverPanel>().SetUp(playerScores[0], playerScores[1], playerScores[2], playerScores[3]);
     }
 
@@ -206,7 +215,7 @@ public class GamePlayManager : MonoBehaviour
         {
             return true;
         }
-        if (currentColor == "B" && colorType == ColorType.Blue)
+        if (currentColor == "V" && colorType == ColorType.Blue)
         {
             return true;
         }

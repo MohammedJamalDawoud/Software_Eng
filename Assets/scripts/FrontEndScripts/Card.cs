@@ -77,7 +77,12 @@ public class Card : MonoBehaviour
             Debug.Log("Card is not playable!");
             return;
         }
-
+        if (StackManager.Instance.stackCardsCount != 0)
+        {
+            cardLocationManager.PickCardsForStack(StackManager.Instance.stackCardsCount);
+            StackManager.Instance.stackCardsCount = 0;
+            return;
+        }
         gameObject.GetComponent<Image>().raycastTarget = false;
         StartCoroutine(delayedSetParent());
         cardLocationManager.myCards.Remove(gameObject);
@@ -87,6 +92,14 @@ public class Card : MonoBehaviour
         transform.DOScale(Vector3.one, 0.5f);
         transform.DOLocalRotate(cardLocationManager.stackLocation.localEulerAngles, 0.25f);
         StartCoroutine(cardLocationManager.SortCards(0.25f));
+        if (cardSpecial == "2")
+        {
+            StackManager.Instance.stackCardsCount += 2;
+        }
+        if (cardSpecial == "4")
+        {
+            StackManager.Instance.stackCardsCount += 4;
+        }
         if (cardSpecial == "W" || cardSpecial == "4")
         {
 

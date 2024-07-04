@@ -100,6 +100,26 @@ public class CardsManager : MonoBehaviour
         GamePlayManager.Instance.ManageTurn();
     }
 
+    public void PickCardsForStack(int n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            GameObject Card = Instantiate(cardPrefab, cardParent);
+            Card.transform.localScale = Vector3.one;
+            Card.transform.position = pickCardsPosition.position;
+            Card.GetComponent<Image>().sprite = GamePlayManager.Instance.GetRandomSprite();
+            Card.GetComponent<Card>().SetupCard(Card.GetComponent<Image>().sprite);
+            // Card.transform.DOLocalMove(new Vector3(startPosi, 0, 0), 0.5f);
+            RectTransform rectTransform = Card.GetComponentInChildren<RectTransform>();
+            // rectTransform.DOSizeDelta(targetSize, 0.25f);
+            Card.transform.localEulerAngles = Vector3.zero;
+
+            Card.transform.DOLocalRotate(new Vector3(0, 0, cardRotation), 0.25f);
+            myCards.Add(Card);
+            StartCoroutine(SortCards(0.1f));
+        }
+    }
+
     public IEnumerator SortCards(float delay)
     {
         yield return new WaitForSeconds(delay);
