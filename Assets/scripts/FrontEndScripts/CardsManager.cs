@@ -26,6 +26,7 @@ public class CardsManager : MonoBehaviour
     public int[] sizeVariationTrigger = new int[] { 10, 15, 20 };
     public float cardRotation;
     public bool isSetuped = false;
+    public int score;
     private void Start()
     {
         StartCoroutine(GenerateCards(totalCards));

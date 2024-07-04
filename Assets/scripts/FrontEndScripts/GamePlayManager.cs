@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Firebase.Database;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -127,10 +128,52 @@ public class GamePlayManager : MonoBehaviour
         topCard.cardColor = getColorFromSelector(colorSelector);
         ManageTurn();
     }
-    public void ShowGameOverPanel()
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            ShowGameOverPanel();
+        }
+    }
+    public async void ShowGameOverPanel()
     {
         isWin = true;
         gameOverPanel.SetActive(true);
+        // int highest = GetHighestNumberofCards();
+        int[] playerScores = new int[4];
+        int i = 0;
+        foreach (CardsManager cardsManager in players)
+        {
+            if (cardsManager.myCards.Count == 0)
+            {
+                playerScores[i] = 1000;
+            }
+            else if (cardsManager.myCards.Count >= 2 && cardsManager.myCards.Count <= 5)
+            {
+                playerScores[i] = 500;
+            }
+            else
+            {
+                playerScores[i] = 100;
+            }
+            i++;
+        }
+        PlayerPrefs.SetInt("myscore", playerScores[0]);
+        await FirebaseDatabase.DefaultInstance.RootReference.Child(PlayerPrefs.GetString("username")).Child("score").SetValueAsync(playerScores[0]);
+        gameOverPanel.GetComponent<GameOverPanel>().SetUp(playerScores[0], playerScores[1], playerScores[2], playerScores[3]);
+    }
+
+    private int GetHighestNumberofCards()
+    {
+        int highest = 0;
+        foreach (CardsManager cardsManager in players)
+        {
+            if (cardsManager.myCards.Count > highest)
+            {
+                highest = cardsManager.myCards.Count;
+            }
+        }
+        return highest;
     }
 
     private string getColorFromSelector(ColorSelector colorSelector)

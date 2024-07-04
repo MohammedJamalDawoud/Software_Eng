@@ -69,7 +69,9 @@ public class AuthManager : MonoBehaviour
                 reference.Child(userName);
                 reference.Child(userName).Child("Email").SetValueAsync(email);
                 reference.Child(userName).Child("uid").SetValueAsync(newUser.UserId);
+                reference.Child(userName).Child("score").SetValueAsync(0);
                 // uIFieldManager.ChangeScreen();
+                PlayerPrefs.SetString("username", userName);
                 Debug.Log("User Registered");
                 uIFieldManager.ClearRegisterFields();
                 uIFieldManager.OnClickChangeScreenButton();

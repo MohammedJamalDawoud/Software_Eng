@@ -2052,6 +2052,7 @@ MonoBehaviour:
   sizeVariationTrigger: 0a0000000f00000014000000
   cardRotation: 0
   isSetuped: 0
+  score: 0
 --- !u!114 &900389756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2380,6 +2381,7 @@ MonoBehaviour:
   sizeVariationTrigger: 0a0000000f00000014000000
   cardRotation: 0
   isSetuped: 0
+  score: 0
 --- !u!1 &995667250
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,6 +2393,7 @@ GameObject:
   - component: {fileID: 995667251}
   - component: {fileID: 995667253}
   - component: {fileID: 995667252}
+  - component: {fileID: 995667254}
   m_Layer: 5
   m_Name: PlayerPrefab (3)
   m_TagString: Untagged
@@ -2459,6 +2462,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995667250}
   m_CullTransparentMesh: 1
+--- !u!114 &995667254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995667250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8839c3e199b8c74fb1c77d924766ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: {fileID: 1431387750}
+  playerRank: {fileID: 2117628013}
+  playerScore: {fileID: 1626374607}
+  backgroundImg: {fileID: 995667252}
 --- !u!1 &1039340030
 GameObject:
   m_ObjectHideFlags: 0
@@ -2699,6 +2718,7 @@ GameObject:
   - component: {fileID: 1081450029}
   - component: {fileID: 1081450031}
   - component: {fileID: 1081450030}
+  - component: {fileID: 1081450032}
   m_Layer: 5
   m_Name: PlayerPrefab (2)
   m_TagString: Untagged
@@ -2767,6 +2787,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081450028}
   m_CullTransparentMesh: 1
+--- !u!114 &1081450032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081450028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8839c3e199b8c74fb1c77d924766ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: {fileID: 1044026854}
+  playerRank: {fileID: 1657021896}
+  playerScore: {fileID: 1606593919}
+  backgroundImg: {fileID: 1081450030}
 --- !u!114 &1082565598 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4860801729147395500, guid: d15c9638ed5f6774899b0283216d1cb3, type: 3}
@@ -3286,6 +3322,7 @@ GameObject:
   - component: {fileID: 1336464200}
   - component: {fileID: 1336464202}
   - component: {fileID: 1336464201}
+  - component: {fileID: 1336464203}
   m_Layer: 5
   m_Name: PlayerPrefab (1)
   m_TagString: Untagged
@@ -3354,6 +3391,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336464199}
   m_CullTransparentMesh: 1
+--- !u!114 &1336464203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336464199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8839c3e199b8c74fb1c77d924766ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: {fileID: 599829999}
+  playerRank: {fileID: 1237292173}
+  playerScore: {fileID: 169245212}
+  backgroundImg: {fileID: 1336464201}
 --- !u!1 &1378703407
 GameObject:
   m_ObjectHideFlags: 0
@@ -3423,6 +3476,7 @@ MonoBehaviour:
   sizeVariationTrigger: 0a0000000f00000014000000
   cardRotation: 0
   isSetuped: 0
+  score: 0
 --- !u!114 &1378703410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4486,6 +4540,7 @@ GameObject:
   - component: {fileID: 1743891382}
   - component: {fileID: 1743891384}
   - component: {fileID: 1743891383}
+  - component: {fileID: 1743891385}
   m_Layer: 5
   m_Name: GameOver
   m_TagString: Untagged
@@ -4555,6 +4610,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743891381}
   m_CullTransparentMesh: 1
+--- !u!114 &1743891385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743891381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1081526d11cf6764d9915ef05956d382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverItems:
+  - {fileID: 1816910046}
+  - {fileID: 1336464203}
+  - {fileID: 1081450032}
+  - {fileID: 995667254}
 --- !u!1 &1816910042
 GameObject:
   m_ObjectHideFlags: 0
@@ -4566,6 +4638,7 @@ GameObject:
   - component: {fileID: 1816910043}
   - component: {fileID: 1816910045}
   - component: {fileID: 1816910044}
+  - component: {fileID: 1816910046}
   m_Layer: 5
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -4634,6 +4707,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816910042}
   m_CullTransparentMesh: 1
+--- !u!114 &1816910046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816910042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8839c3e199b8c74fb1c77d924766ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: {fileID: 1710235082}
+  playerRank: {fileID: 1132031889}
+  playerScore: {fileID: 1985455620}
+  backgroundImg: {fileID: 1816910044}
 --- !u!1 &1830345547
 GameObject:
   m_ObjectHideFlags: 0
@@ -4838,6 +4927,7 @@ MonoBehaviour:
   sizeVariationTrigger: 0a0000000f00000014000000
   cardRotation: 0
   isSetuped: 0
+  score: 0
 --- !u!114 &1872338177
 MonoBehaviour:
   m_ObjectHideFlags: 0
