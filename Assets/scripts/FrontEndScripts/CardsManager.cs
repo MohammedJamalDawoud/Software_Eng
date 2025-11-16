@@ -5,9 +5,20 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages a player's hand of cards, including card generation, layout, animations, and timer.
+/// Handles card drawing, sorting, and visual presentation with dynamic sizing based on card count.
+/// </summary>
 public class CardsManager : MonoBehaviour
 {
+    /// <summary>
+    /// Unique identifier for this player (0-3).
+    /// </summary>
     public int id = -1;
+    
+    /// <summary>
+    /// Singleton instance (primarily used for player 0 - the human player).
+    /// </summary>
     public static CardsManager Instance;
     [Header("Card Prefab")]
     [SerializeField] private GameObject cardPrefab;

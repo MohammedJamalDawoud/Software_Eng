@@ -2,22 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages audio playback for background music and sound effects.
+/// Handles volume control and persistence of audio settings using PlayerPrefs.
+/// Implements singleton pattern for global audio access.
+/// </summary>
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance; // this is the static instance of the SoundManager Class
-    public AudioSource musicAudioSource; // this is the audio source component
-    public AudioSource sfxAudioSource; // this is the button click sound
+    /// <summary>
+    /// Singleton instance of the SoundManager.
+    /// Provides global access to audio functionality.
+    /// </summary>
+    public static SoundManager Instance;
+    
+    /// <summary>
+    /// Audio source component for background music playback.
+    /// </summary>
+    public AudioSource musicAudioSource;
+    
+    /// <summary>
+    /// Audio source component for sound effects playback.
+    /// </summary>
+    public AudioSource sfxAudioSource;
+    
+    /// <summary>
+    /// Music volume level (0-100).
+    /// </summary>
     public int musicLevel = 0;
+    
+    /// <summary>
+    /// Sound effects volume level (0-100).
+    /// </summary>
     public int sfxLevel = 0;
+    /// <summary>
+    /// Initializes the singleton instance and loads saved audio settings.
+    /// Ensures only one SoundManager exists in the scene.
+    /// </summary>
     private void Awake()
     {
-        if (Instance == null) // if the instance of the SoundManager is null then assign this to the instance
+        if (Instance == null)
         {
             Instance = this;
         }
         else
         {
-            Destroy(this.gameObject); // if the instance of the SoundManager is not null then destroy this object
+            Destroy(this.gameObject);
         }
         if (PlayerPrefs.HasKey("musiclevel"))
         {
@@ -29,8 +58,14 @@ public class SoundManager : MonoBehaviour
         }
         musicLevel = PlayerPrefs.GetInt("musiclevel");
         sfxLevel = PlayerPrefs.GetInt("sfx");
-        // Debug.Log("Music Level: " + PlayerPrefs.GetInt("musiclevel") + " SFX Level: " + PlayerPrefs.GetInt("sfx"));
     }
+    
+    /// <summary>
+    /// Updates and persists audio volume settings.
+    /// Converts integer volume levels (0-100) to Unity's float volume range (0-1).
+    /// </summary>
+    /// <param name="musicLevel">Music volume level (0-100).</param>
+    /// <param name="sfxlevel">Sound effects volume level (0-100).</param>
     public void StoreSoundData(int musicLevel, int sfxlevel)
     {
         musicAudioSource.volume = musicLevel / 100f;

@@ -4,12 +4,37 @@ using UnityEngine;
 using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Extensions;
+
+/// <summary>
+/// Manages user authentication using Firebase Authentication.
+/// Handles user registration, login, logout, and persistent session management.
+/// Integrates with Firebase Realtime Database for user profile data.
+/// </summary>
 public class AuthManager : MonoBehaviour
 {
+    /// <summary>
+    /// Singleton instance of the AuthManager.
+    /// Provides global access to authentication functionality.
+    /// </summary>
     public static AuthManager Instance;
+    
+    /// <summary>
+    /// Firebase Authentication instance for user management.
+    /// </summary>
     public FirebaseAuth auth;
+    
+    /// <summary>
+    /// Firebase Realtime Database reference for user data storage.
+    /// </summary>
     public DatabaseReference reference;
+    
+    /// <summary>
+    /// UI manager that handles authentication interface interactions.
+    /// </summary>
     public UI_AuthenticationManager uIFieldManager;
+    /// <summary>
+    /// Initializes Firebase services and sets up the singleton instance.
+    /// </summary>
     public void Awake()
     {
         auth = FirebaseAuth.DefaultInstance;
@@ -22,9 +47,11 @@ public class AuthManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
+    /// <summary>
+    /// Checks for saved login credentials and attempts automatic login if available.
+    /// </summary>
     private void Start()
     {
         if (PlayerPrefs.HasKey("savelogin"))
@@ -46,6 +73,12 @@ public class AuthManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Registers a new user with Firebase Authentication and creates their profile in the database.
+    /// </summary>
+    /// <param name="email">User's email address.</param>
+    /// <param name="password">User's password.</param>
+    /// <param name="userName">Desired username for display purposes.</param>
     public async void RegisterFunc(string email, string password, string userName)
     {
         LoadingManager.Instance.ShowLoading();
@@ -81,6 +114,12 @@ public class AuthManager : MonoBehaviour
         });
     }
 
+    /// <summary>
+    /// Authenticates an existing user with Firebase using email and password.
+    /// Optionally saves credentials for automatic login on next session.
+    /// </summary>
+    /// <param name="email">User's email address.</param>
+    /// <param name="password">User's password.</param>
     public async void LoginFunc(string email, string password)
     {
         LoadingManager.Instance.ShowLoading();
@@ -115,11 +154,14 @@ public class AuthManager : MonoBehaviour
         });
     }
 
+    /// <summary>
+    /// Signs out the current user and clears all stored preferences.
+    /// Returns to the authentication menu.
+    /// </summary>
     public void OnClickSignOut()
     {
         auth.SignOut();
         MenuManager.Instance.OpenMenu("auth");
-        // clear all the PlayerPrefs...
         PlayerPrefs.DeleteAll();
     }
 }

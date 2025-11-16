@@ -6,15 +6,44 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// Represents a single UNO card in the game.
+/// Handles card logic, validation, playing mechanics, and special card effects.
+/// Manages card interactions including clicks, validation, and placement on the discard pile.
+/// </summary>
 public class Card : MonoBehaviour
 {
-    [Header("Logical Variables")]
+    [Header("Card Properties")]
+    /// <summary>
+    /// The sprite image displayed on this card.
+    /// </summary>
     public Sprite cardSprite;
+    
+    /// <summary>
+    /// Color of the card (R=Red, G=Green, V=Blue/Violet, Y=Yellow).
+    /// </summary>
     public string cardColor;
+    
+    /// <summary>
+    /// Number value on the card (0-9), empty for special cards.
+    /// </summary>
     public string cardNumber;
+    
+    /// <summary>
+    /// Special card type (W=Wild, 4=Wild Draw 4, 2=Draw 2, S=Skip, R=Reverse).
+    /// </summary>
     public string cardSpecial;
+    
+    /// <summary>
+    /// Indicates if this card has special abilities rather than a number.
+    /// </summary>
     public bool isSpecial;
+    
+    /// <summary>
+    /// Reference to the CardsManager that owns this card.
+    /// </summary>
     public CardsManager cardLocationManager;
+    
     private Button cardButton;
 
     private void Awake()
@@ -25,6 +54,11 @@ public class Card : MonoBehaviour
         cardButton.onClick.AddListener(OnClickCard);
     }
 
+    /// <summary>
+    /// Initializes card properties by parsing the card sprite name.
+    /// Extracts color, number, and special card type from the sprite filename.
+    /// </summary>
+    /// <param name="_cardSprite">The sprite to use for this card.</param>
     public void SetupCard(Sprite _cardSprite)
     {
         cardSprite = _cardSprite;
@@ -64,6 +98,9 @@ public class Card : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles card click events. Validates if the card can be played and executes the play action.
+    /// </summary>
     public void OnClickCard()
     {
         if (!GamePlayManager.Instance.isMyTurn(cardLocationManager.id))
@@ -73,7 +110,6 @@ public class Card : MonoBehaviour
 
         if (!IsPlayable())
         {
-            // If the card is not playable, simply return
             Debug.Log("Card is not playable!");
             return;
         }
@@ -114,6 +150,12 @@ public class Card : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Validates whether this card can be legally played based on UNO rules.
+    /// A card is playable if it matches the top card's color, number, or special type.
+    /// Wild cards can always be played.
+    /// </summary>
+    /// <returns>True if the card can be played, false otherwise.</returns>
     private bool IsPlayable()
     {
         Card topCard = StackManager.Instance.GetTopOfStack();

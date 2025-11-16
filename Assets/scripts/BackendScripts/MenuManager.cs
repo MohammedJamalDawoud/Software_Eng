@@ -5,33 +5,57 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuManager : MonoBehaviour // Menu Manager Class this manages all the menus in the game
+/// <summary>
+/// Manages menu navigation and state transitions throughout the application.
+/// Implements a menu system where only one menu is active at a time.
+/// Uses singleton pattern for global access to menu functionality.
+/// </summary>
+public class MenuManager : MonoBehaviour
 {
-    public static MenuManager Instance; // This is just an Static Instance singleton of the MenuManager Class
-    public List<Menu> menus; // This is just the list Of menus that are required to open or close.
-    [SerializeField] private Transform menusParent; // This is where the all the menus are storeed...
-    public void Awake() // this is the first method called as soon as the game loads
+    /// <summary>
+    /// Singleton instance of the MenuManager.
+    /// Provides global access to menu navigation functionality.
+    /// </summary>
+    public static MenuManager Instance;
+    
+    /// <summary>
+    /// List of all available menus in the scene.
+    /// </summary>
+    public List<Menu> menus;
+    
+    [SerializeField] private Transform menusParent;
+    
+    /// <summary>
+    /// Initializes the singleton instance and discovers all Menu components in the scene.
+    /// </summary>
+    public void Awake()
     {
-        Instance = this; // storing the instance of Singleton
-        menus = FindObjectsOfType<Menu>(true).ToList(); // getting all the menus that are avaiable in the scene
+        Instance = this;
+        menus = FindObjectsOfType<Menu>(true).ToList();
     }
 
-    public GameObject OpenMenu(string menuName) // this function is called when to open a new Menu
+    /// <summary>
+    /// Opens a menu by name and closes all other menus.
+    /// Only one menu is active at a time.
+    /// </summary>
+    /// <param name="menuName">The name of the menu to open (must match Menu.menuName).</param>
+    /// <returns>The GameObject of the opened menu, or null if no matching menu was found.</returns>
+    public GameObject OpenMenu(string menuName)
     {
-        GameObject selectedMenu = null; // currentSelected Menu is Stored here
-        foreach (Menu currentMenu in menus) // we will use for Loop to iterate all the menus..
+        GameObject selectedMenu = null;
+        foreach (Menu currentMenu in menus)
         {
-            if (currentMenu.menuName == menuName) // checking if the target menuName and currentMenu is same
+            if (currentMenu.menuName == menuName)
             {
-                currentMenu.gameObject.SetActive(true); // setting currentMenu is SetActive to true (visible)
-                selectedMenu = currentMenu.gameObject; // storing the currentMenu in selectedMenu
+                currentMenu.gameObject.SetActive(true);
+                selectedMenu = currentMenu.gameObject;
             }
             else
             {
-                currentMenu.gameObject.SetActive(false); // setting currentMenu is SetActive to false (invisible)
+                currentMenu.gameObject.SetActive(false);
             }
         }
 
-        return selectedMenu; // returning the selectedMenu
+        return selectedMenu;
     }
 }
